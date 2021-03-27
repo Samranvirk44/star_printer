@@ -9,6 +9,18 @@ const MyComponent = () => {
   const [portt, setportt] = useState("");
   const [connectt, setconn] = useState("");
   const [printt, setprintt] = useState("");
+
+  async function checkstatus(){
+    try{
+      let status=await StarPRNT.checkStatus("TCP:192.168.1.1", "EscPosMobile")
+alert(status)
+console.log(status)
+    }
+    catch(err){
+      alert(err)
+      console.log(err)
+    }
+  }
   async function portDiscovery() {
     console.log('port finding')
 
@@ -67,6 +79,9 @@ const MyComponent = () => {
       <Text>Modal Name   {printerss[0].modelName}</Text>
       <Text>Connected    {connectt}</Text>
       <Text>Print        {printt}</Text>
+      <TouchableOpacity onPress={() => checkstatus()} style={{ height: 50, width: '70%', borderRadius: 10, marginTop: '20%', alignSelf: 'center', backgroundColor: 'red', alignItems: 'center', justifyContent: 'center' }}>
+        <Text>check status of printer</Text>
+      </TouchableOpacity>
     </View>
 
   );
